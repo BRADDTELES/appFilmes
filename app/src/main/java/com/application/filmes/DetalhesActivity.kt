@@ -38,19 +38,19 @@ class DetalhesActivity : AppCompatActivity() {
             intent.getParcelableExtra("filme")
         }
 
-        /*if (filme!= null){
+        if (filme!= null){
             binding.textViewTitulo.text = filme?.titulo
             binding.textViewGenero.text = filme?.genero
             binding.textViewAno.text = filme?.ano.toString()
-        }*/
+        }
 
-        filme?.let { filme ->
+        /*filme?.let { filme ->
             with(binding) {
                 textViewTitulo.text = filme.titulo
                 textViewGenero.text = filme.genero
                 textViewAno.text = filme.ano.toString()
             }
-        }
+        }*/
 
         with(binding) {
             fabBotao.setOnClickListener {
@@ -64,27 +64,37 @@ class DetalhesActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     fabDeletar.setOnClickListener {
-                        // Deletar filme
                         jobDeletarFilme = CoroutineScope(Dispatchers.IO).launch {
-                            val response = filme?.id?.let { id ->
-                                filmeAPI.deletarFilme(id)
-                            }
-                            withContext(Dispatchers.Main) {
-                                if ( response != null){
-                                    if (response.isSuccessful) {
-                                        Toast.makeText(
-                                            this@DetalhesActivity,
-                                            "Filme deletado",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                        val intent =
-                                            Intent(this@DetalhesActivity, MainActivity::class.java)
-                                        startActivity(intent)
-                                    } else {
-                                        exibirMensagem("Erro ao deletar filme")
-                                        Log.i("info_filmes", response.errorBody().toString())
-                                        Log.i("info_filmes", "ERRO CODE: ${response.code()}")
+                            try {
+                                val response = filme?.id?.let { id ->
+                                    filmeAPI.deletarFilme(id)
+                                }
+                                withContext(Dispatchers.Main) {
+                                    if (response != null) {
+                                        if (response.isSuccessful) {
+                                            exibirMensagem("Filme deletado com sucesso!")
+                                            val intent =
+                                                Intent(
+                                                    this@DetalhesActivity,
+                                                    MainActivity::class.java
+                                                )
+                                            startActivity(intent)
+                                        } else {
+                                            exibirMensagem("Erro ao deletar filme")
+                                            Log.i(
+                                                "info_filmes",
+                                                response.errorBody()?.string()
+                                                    ?: "Erro desconhecido"
+                                            )
+                                            Log.i("info_filmes", "ERRO CODE: ${response.code()}")
+                                        }
                                     }
+                                }
+
+                            } catch (e: Exception) {
+                                withContext(Dispatchers.Main) {
+                                    exibirMensagem("Erro ao deletar filme: ${e.message}")
+                                    Log.e("info_filmes", e.stackTraceToString())
                                 }
                             }
                         }

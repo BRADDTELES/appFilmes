@@ -50,8 +50,8 @@ class CadastroActivity : AppCompatActivity() {
                 // Salvar filme
                 val titulo = editTextTitulo.text.toString()
                 val genero = editTextGenero.text.toString()
-                val ano = editTextAno.text.toString().toIntOrNull()
-                if (titulo.isNullOrEmpty() || genero.isNullOrEmpty() || ano?.toInt() == null) {
+                val ano = editTextAno.text.toString().toIntOrNull() ?: 0
+                if (titulo.isNullOrEmpty() || genero.isNullOrEmpty() || ano <= 1900) {
                     exibirMensagem("Preencha todos os campos")
                     return@setOnClickListener
                 }
@@ -84,13 +84,13 @@ class CadastroActivity : AppCompatActivity() {
                         startActivity(intent)
                     } else {
                         exibirMensagem("Erro ao salvar filme.")
-                        Log.e("Erro", response.errorBody().toString())
+                        Log.e("info_filmes", response.errorBody()?.string() ?: "Erro desconhecido")
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     exibirMensagem("Erro ao salvar filme: ${e.message}")
-                    Log.e("Erro", e.stackTraceToString())
+                    Log.e("info_filmes", e.stackTraceToString())
                 }
             }
         }
@@ -106,13 +106,13 @@ class CadastroActivity : AppCompatActivity() {
                         startActivity(intent)
                     } else {
                         exibirMensagem("Erro ao atualizar filme.")
-                        Log.e("Erro", response.errorBody().toString())
+                        Log.e("info_filmes", response.errorBody()?.string() ?: "Erro desconhecido")
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     exibirMensagem("Erro ao atualizar filme: ${e.message}")
-                    Log.e("Erro", e.stackTraceToString())
+                    Log.e("info_filmes", e.stackTraceToString())
                 }
             }
         }
