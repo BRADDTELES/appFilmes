@@ -54,12 +54,20 @@ class MainActivity : AppCompatActivity() {
         }
         binding.rvPopulares.adapter = filmeAdapter
 
-        linearLayoutManager = LinearLayoutManager(
+        /*linearLayoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.HORIZONTAL,
             false
         )
-        binding.rvPopulares.layoutManager = linearLayoutManager
+        binding.rvPopulares.layoutManager = linearLayoutManager*/
+
+        gridLayoutManager = GridLayoutManager(
+            this,
+            2,
+            GridLayoutManager.VERTICAL,
+            false
+        )
+        binding.rvPopulares.layoutManager = gridLayoutManager
         
     }
 

@@ -50,7 +50,11 @@ class CadastroActivity : AppCompatActivity() {
                 // Salvar filme
                 val titulo = editTextTitulo.text.toString()
                 val genero = editTextGenero.text.toString()
-                val ano = editTextAno.text.toString().toIntOrNull() ?: 0
+                val ano = editTextAno.text.toString().toIntOrNull()
+                if (titulo.isNullOrEmpty() || genero.isNullOrEmpty() || ano?.toInt() == null) {
+                    exibirMensagem("Preencha todos os campos")
+                    return@setOnClickListener
+                }
                 if (filme == null) {
                     salvarFilme(Filme(0, titulo, genero, ano))
                 } else {
