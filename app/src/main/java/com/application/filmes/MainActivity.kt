@@ -66,6 +66,21 @@ class MainActivity : AppCompatActivity() {
         )
         binding.rvPopulares.layoutManager = gridLayoutManager
 
+        // Logica Esconder a seta de adicionar quando o scroll desce e quando sobe aparece a seta (VERTICAL)
+        binding.rvPopulares.addOnScrollListener( object : OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+
+                val podeDescerVerticalmente = recyclerView.canScrollVertically(1)// Verificar scroll na vertical e se está descendo
+                Log.i("recycler_test", "podeDescerVerticalmente: $podeDescerVerticalmente")
+                Log.i("recycler_test", "onScrolled: dx: $dx, dy: $dy")
+                if (dy > 0) {//descendo
+                    binding.faEditar.hide()
+                }else{//dy < 0 está subindo
+                    binding.faEditar.show()
+                }
+            }
+        })
+
     }
 
     override fun onStart() {
