@@ -13,7 +13,7 @@ object RetrofitService {
     private val okhttpClient: OkHttpClient = OkHttpClient.Builder()
         .writeTimeout(10, TimeUnit.SECONDS)// Escrita (salvando na API)
         .readTimeout(20, TimeUnit.SECONDS)// Leitura (recuperando dados da API)
-        .connectTimeout(5, TimeUnit.SECONDS)// Tempo máximo de conexão
+        .connectTimeout(1, TimeUnit.SECONDS)// Tempo máximo de conexão
         .build()
 
     val retrofit = Retrofit.Builder()

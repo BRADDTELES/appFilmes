@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:text="Ano de Lançamento"
         android:textColor="@color/branco"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewTitulo"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGenero"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/textViewTitulo" />
 
