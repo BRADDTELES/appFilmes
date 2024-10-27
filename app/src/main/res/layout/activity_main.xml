@@ -56,6 +56,7 @@
         android:id="@+id/textViewMinhaLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Minha Lista de filmes"
         android:textColor="@color/branco"
