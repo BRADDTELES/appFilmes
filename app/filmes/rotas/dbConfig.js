@@ -12,7 +12,7 @@ connection.connect((err) => {
     console.error('Erro ao conectar ao banco de dados:', err);
     return;
   }
-  console.log('Conexão com o banco de dados estabelecida!');   
+  console.log('Conexão com o banco de dados estabelecida!');
 
 });
 
