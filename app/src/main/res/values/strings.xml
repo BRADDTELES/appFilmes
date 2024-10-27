@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Meus Filmes</string>
+    <string name="editar" />
+    <string name="edit">Editar</string>
+</resources>
