@@ -102,6 +102,7 @@
         android:id="@+id/fabDeletar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fabEditar"

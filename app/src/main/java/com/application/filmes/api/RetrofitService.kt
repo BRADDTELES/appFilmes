@@ -6,9 +6,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitService {
-    const val BASE_URL = "http://10.0.2.2:3000/"
-    //const val BASE_URL = "http://localhost:3000/" // NÃO FUNCIONA
-
+    const val BASE_URL = "http://10.0.2.2:3000/" // IP Emulador, funciona somente no emulador, caso usar celular físico não funciona
+    const val IP = "Inserir o IP do computador AQUI"
+    //const val BASE_URL = "http://$IP:3000/" // IP Computador funciona no celular físico
+    /* Alterar o IP no arquivo network_security_config.xml */
+    /* localhost NÃO FUNCIONA */
 
     private val okhttpClient: OkHttpClient = OkHttpClient.Builder()
         .writeTimeout(10, TimeUnit.SECONDS)// Escrita (salvando na API)
